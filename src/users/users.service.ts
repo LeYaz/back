@@ -36,7 +36,7 @@ export class UsersService {
     return this.usersRepository.delete(id);
   }
 
-  findByUsername(username: string) {
-    return this.usersRepository.findOneBy({ username })
+  findByEmail(email: string) {
+    return this.usersRepository.findOneBy({ email })
   }
 }

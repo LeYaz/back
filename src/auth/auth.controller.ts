@@ -12,7 +12,7 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @Post('login')
     signIn(@Body() user: CreateUserDto){
-        return this.authService.signIn(user.username, user.password);
+        return this.authService.signIn(user.email, user.password);
     }
 
     @UseGuards(AuthGuard)

@@ -1,5 +1,6 @@
 import { Card } from "src/card/entities/card.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Profile } from "src/profile/entities/profile.entity";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Group {
@@ -11,4 +12,7 @@ export class Group {
 
     @OneToMany(() => Card, card => card.group)
     cards: Card[];
+
+    @ManyToMany(() => Profile, profile => profile.group)
+    profile: Profile[];
 }

@@ -4,16 +4,27 @@ import { UpdateGroupDto } from './dto/update-group.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Group } from './entities/group.entity';
 import { Repository } from 'typeorm';
+import { ProfileService } from 'src/profile/profile.service';
 
 @Injectable()
 export class GroupService {
   constructor(
-    @InjectRepository(Group) private groupRepository: Repository<Group>
+    @InjectRepository(Group) private groupRepository: Repository<Group>,
+    private profileService: ProfileService,
   ) {}
 
-  create(createGroupDto: CreateGroupDto) {
-    return this.groupRepository.save(createGroupDto);
-  }
+  async create(createGroupDto: CreateGroupDto) {
+    const profile = await this.profileService.findOne(createGroupDto.profileId);
+    if(!profile) {  
+      throw new Error('Profile not found');
+    }
+    const group = new Group();
+    group.name = createGroupDto.name;
+    group.profile = [profile];
+    
+    return this.groupRepository.save(group);
+    
+    }
 
   findAll() {
     return this.groupRepository.find();

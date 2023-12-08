@@ -4,7 +4,7 @@ export class CreateProfileDto {
 
     @IsNotEmpty()
     @IsString()
-    username: string;
+    userName: string;
 
     @IsNotEmpty()
     @IsString()

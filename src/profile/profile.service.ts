@@ -4,15 +4,28 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Profile } from './entities/profile.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class ProfileService {
 
   constructor(
-    @InjectRepository(Profile) private profileRepository: Repository<Profile>
+    @InjectRepository(Profile) private profileRepository: Repository<Profile>,
+    private userService: UsersService,
   ) {}
-  create(createProfileDto: CreateProfileDto) {
-    return this.profileRepository.save(createProfileDto);
+
+  async create(createProfileDto: CreateProfileDto) {
+    const user = await this.userService.findOne(createProfileDto.userId);
+    if(!user) {
+      throw new Error('User not found');
+    }
+
+    const profile = new Profile();
+    profile.firstName = createProfileDto.firstName;
+    profile.lastName = createProfileDto.lastName;
+    profile.userName = createProfileDto.userName;
+    profile.user = user;
+    return this.profileRepository.save(profile);
   }
 
   findAll() {

@@ -12,5 +12,6 @@ import { ProfileModule } from 'src/profile/profile.module';
   ],
   controllers: [GroupController],
   providers: [GroupService],
+  exports: [GroupService],
 })
 export class GroupModule {}

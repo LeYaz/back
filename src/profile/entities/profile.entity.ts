@@ -1,4 +1,3 @@
-import { group } from "console";
 import { Group } from "src/group/entities/group.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";

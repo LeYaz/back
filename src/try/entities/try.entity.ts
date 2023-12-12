@@ -1,11 +1,11 @@
 import { Card } from "src/card/entities/card.entity";
 import { Profile } from "src/profile/entities/profile.entity";
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+//TODO ajouter le ration success/try
 @Entity()
 export class Try {
 
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number;
 
     @ManyToOne(() => Profile)
@@ -18,10 +18,13 @@ export class Try {
     date: Date;
 
     @Column()
-    result: boolean;
+    success: boolean;
 
     @Column()
     nbTry: number;
+
+    @Column()
+    nbSuccess: number;
 
     @Column()
     nextTry: Date;

@@ -8,6 +8,7 @@ import { Public } from 'src/auth/public.decorator';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  //TODO move dans le auth module
   @Public()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {

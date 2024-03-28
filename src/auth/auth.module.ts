@@ -11,6 +11,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
 // @Module({
 //   imports: [
 //     UsersModule,
@@ -45,6 +47,7 @@ export class AuthModule {
     return {
       module: AuthModule,
       imports: [
+        TypeOrmModule.forFeature([User]),
         PassportModule,
         JwtModule.register({
           secret: config.jwtSecret,

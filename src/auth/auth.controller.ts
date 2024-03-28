@@ -39,7 +39,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @HttpCode(200) 
   @Post('login')
-  async login(@Request() req : Request): Promise<any> {
+  async login(@Request() req ): Promise<any> {
     return await this.authService.login(req.user.id);
   }
   
@@ -48,7 +48,7 @@ export class AuthController {
   @Get('refresh')
   @UseGuards(JwtRefreshAuthGuard)
   @HttpCode(200)
-  async refreshToken(@Request() req: Request){
+  async refreshToken(@Request() req){
     return {
       // Generate a new access token based on the same payload
       // we get from the refresh token.

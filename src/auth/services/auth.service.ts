@@ -42,15 +42,13 @@ export class AuthService {
     const user = await this.userRepository.findOne({
       where: { email: email },
     });
-    
     // if a user with that email exists then check password
     // I'm using a libraby called `argon2` for hashing user passwords
     // and storing them in the database;
 
     if (user) {
       // Match the entity's password has with provided pass
-      const passMatch = await bcrypt.compare(user.password, pass);
-
+      const passMatch = await bcrypt.compare(pass, user.password);
       if (passMatch) {
         return user;
       }
@@ -83,9 +81,8 @@ export class AuthService {
       id: user.id,
       email: user.email,
     };
-    
     return {      
-      access: this.generateAccessToken(payload), // Access Token
+      access: await this.generateAccessToken(payload), // Access Token
       refresh: this._generateRefreshToken(payload), // Refresh Token
     };
   }

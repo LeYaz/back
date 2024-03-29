@@ -33,6 +33,13 @@ export class AuthController {
     // specific configuration for the current app that injects this module.
     @Inject('AUTH_MODULE_CONFIG') private moduleConfig: IAuthModuleConfig
   ) {}
+
+  // Register a new user
+  @Post('register')
+  @HttpCode(201)
+  async register(@Body() createUserDto: CreateUserDto): Promise<any> {
+    return await this.authService.createAccount(createUserDto);
+  }
   
   // LOGIN
   // Use the LocalAuthGuard for verifying credentials
@@ -52,7 +59,7 @@ export class AuthController {
     return {
       // Generate a new access token based on the same payload
       // we get from the refresh token.
-      access: this.authService.generateAccessToken({
+      access: await this.authService.generateAccessToken({
         id: req.user.id,
         email: req.user.email,
       }),

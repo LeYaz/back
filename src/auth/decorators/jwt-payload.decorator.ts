@@ -1,5 +1,3 @@
-// Create an interface for your payload
-
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { IJwtPayload } from '../models/jwt-payload-interface';
 

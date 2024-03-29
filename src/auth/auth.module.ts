@@ -13,25 +13,7 @@ import { PassportModule } from '@nestjs/passport';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
-// @Module({
-//   imports: [
-//     UsersModule,
-//     JwtModule.register({
-//       global: true,
-//       secret: jwtConstants.secret,
-//       signOptions: { expiresIn: '3600s' },
-//     })
-//   ],
-//   controllers: [AuthController],
-//   providers: [
-//     AuthService,
-//     {
-//       provide: APP_GUARD,
-//       useClass: AuthGuard,
-//     },
-//   ]
-// })
-// export class AuthModule {}
+
 @Module({
   providers: [
     AuthService,

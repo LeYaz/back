@@ -4,27 +4,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh.guard';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
-// import { AuthGuard } from './auth.guard';
-// import { Public } from './public.decorator';
 
-// @Controller('auth')
-// export class AuthController {
-//     constructor(private authService: AuthService){}
-
-//     @Public()
-//     @HttpCode(HttpStatus.OK)
-//     @Post('login')
-//     signIn(@Body() user: CreateUserDto){
-//         return this.authService.signIn(user.email, user.password);
-//     }
-
-//     @UseGuards(AuthGuard)
-//     @Get('profile')
-//     getProfile(@Request() req) {
-//     return req.user;
-//   }
-
-// }
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -65,20 +45,5 @@ export class AuthController {
       }),
     };
   }
-
-  // Endpoint to get user's profile or additional info.
-  // This will be called immediately after successfull login
-  // @Get('whoami')
-  // @UseGuards(JwtAuthGuard)
-  // // Optional: Use a serializer to exclude specific properties
-  // @UseInterceptors(ClassSerializerInterceptor)
-  // async whoami(@JwtPayload() payload: IJwtPayload): Promise<IAuthUser | null> {
-  //   // An example: get a user that is active by id.
-  //   // We don't want to throw an exception here instead just return null.
-  //   // We will need our Angular app to check the response if is null and force
-  //   // logout on the client side. Throwing an error here may cause the Angular
-  //   // interceptor to keep retrying to get a new token. More on that later.
-  //   return await this.authService.getActiveUserById(payload.id);
-  // }
 
 }

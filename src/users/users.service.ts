@@ -13,12 +13,12 @@ export class UsersService {
     @InjectRepository(User) private usersRepository: Repository<User>
   ){}
 
-  async create(createUserDto: CreateUserDto) {
-    const salt = await bcrypt.genSalt();
-    const hash = await bcrypt.hash(createUserDto.password, salt);
-    const newUser: CreateUserDto = { ...createUserDto, password: hash }; 
-    return this.usersRepository.save(newUser);
-  }
+  // async create(createUserDto: CreateUserDto) {
+  //   const salt = await bcrypt.genSalt();
+  //   const hash = await bcrypt.hash(createUserDto.password, salt);
+  //   const newUser: CreateUserDto = { ...createUserDto, password: hash }; 
+  //   return this.usersRepository.save(newUser);
+  // }
 
   findAll() {
     return this.usersRepository.find();

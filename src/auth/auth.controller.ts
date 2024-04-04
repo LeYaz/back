@@ -7,6 +7,7 @@ import { IAuthModuleConfig } from './models/auth-module-config-interface';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { JwtPayload } from './decorators/jwt-payload.decorator';
 import { ProfileService } from 'src/profile/profile.service';
+import { IJwtPayload } from './models/jwt-payload-interface';
 
 @Controller('auth')
 export class AuthController {
@@ -50,11 +51,10 @@ export class AuthController {
     };
   }
 
-  //TODO get profile
   @Get('whoami')
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
-  async whoami(@JwtPayload() payload){
+  async whoami(@JwtPayload() payload: IJwtPayload){
     const profile = await this.profileService.findByUserId(payload.id);
     if(!profile){
       return {

@@ -25,7 +25,10 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     }),
     UsersModule,
-    AuthModule,
+    AuthModule.forRoot({
+      jwtSecret: process.env.JWT_SECRET,
+      jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+    }),
     ProfileModule,
     GroupModule,
     CardModule,

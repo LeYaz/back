@@ -4,6 +4,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh.guard';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -27,6 +28,7 @@ export class AuthController {
   @HttpCode(200) 
   @Post('login')
   async login(@Request() req ): Promise<any> {
+    console.log('req', req);
     return await this.authService.login(req.user.id);
   }
   
@@ -45,5 +47,17 @@ export class AuthController {
       }),
     };
   }
+
+  //TODO get profile
+  @Get('whoami')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  async whoami(@Request() req){
+    return await {
+      id:1,
+      userName: 'test'
+    };
+  }
+
 
 }

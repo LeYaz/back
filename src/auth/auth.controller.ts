@@ -5,11 +5,14 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh.guard';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { JwtPayload } from './decorators/jwt-payload.decorator';
+import { ProfileService } from 'src/profile/profile.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private authService: AuthService,
+    private profileService: ProfileService,
     // Optional. If you are using a monorepo you may need to pass
     // specific configuration for the current app that injects this module.
     @Inject('AUTH_MODULE_CONFIG') private moduleConfig: IAuthModuleConfig
@@ -51,10 +54,17 @@ export class AuthController {
   @Get('whoami')
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
-  async whoami(@Request() req){
-    return await {
-      id:1,
-      userName: 'test'
+  async whoami(@JwtPayload() payload){
+    const profile = await this.profileService.findByUserId(payload.id);
+    if(!profile){
+      return {
+        id: payload.id,
+        userName: 'Unknown',
+      };
+    }
+    return {
+      id: payload.id,
+      userName: profile.userName,
     };
   }
 

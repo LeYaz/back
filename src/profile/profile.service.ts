@@ -43,4 +43,8 @@ export class ProfileService {
   remove(id: number) {
     return this.profileRepository.delete(id);
   }
+
+  findByUserId(userId: number) {
+    return this.profileRepository.findOne({ where: { user: { id: userId }}});
+  }
 }

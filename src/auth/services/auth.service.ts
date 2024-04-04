@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { IJwtPayload } from '../models/jwt-payload-interface';
 import { IAuthModuleConfig } from '../models/auth-module-config-interface';
+import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
+import { ProfileService } from 'src/profile/profile.service';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +16,7 @@ export class AuthService {
         @InjectRepository(User) private userRepository: Repository<User>,
         @Inject('AUTH_MODULE_CONFIG') private moduleConfig: IAuthModuleConfig,
         private jwtService: JwtService,
+        private profileService: ProfileService,
     ) {
         
     }
@@ -73,10 +76,18 @@ export class AuthService {
   async createAccount(dto: CreateUserDto) {
     const salt = await bcrypt.genSalt();
     const account = await this.userRepository.save({
-      ...dto,
+      email: dto.email,
       // Hash the user's password before storing it to the db,
       password: await bcrypt.hash(dto.password, salt),
     });
+    const profile : CreateProfileDto = {
+      firstName: dto.firstName,
+      lastName: dto.lastName,
+      userName: dto.userName,
+      userId: account.id
+    }
+    await this.profileService.create(profile);
+    
   }
 
   // Generate Access Token

@@ -13,6 +13,7 @@ import { PassportModule } from '@nestjs/passport';
 import { IAuthModuleConfig } from './models/auth-module-config-interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/users/entities/user.entity';
+import { ProfileModule } from 'src/profile/profile.module';
 
 @Module({
   providers: [
@@ -30,6 +31,7 @@ export class AuthModule {
       module: AuthModule,
       imports: [
         TypeOrmModule.forFeature([User]),
+        ProfileModule,
         PassportModule,
         JwtModule.register({
           secret: config.jwtSecret,

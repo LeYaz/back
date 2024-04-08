@@ -20,7 +20,7 @@ export class Profile {
     @ManyToOne(() => User, user => user.profile)
     user : User;
 
-    @ManyToMany(() => Group, group => group.profile)
-    @JoinTable()
-    group: Group[];
+    // @ManyToMany(() => Group, group => group.profile)
+    // @JoinTable()
+    // group: Group[];
 }

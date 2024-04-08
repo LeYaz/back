@@ -7,8 +7,8 @@ import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { GroupModule } from './group/group.module';
-import { CardModule } from './card/card.module';
-import { TryModule } from './try/try.module';
+// import { CardModule } from './card/card.module';
+// import { TryModule } from './try/try.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -31,8 +31,8 @@ import { ConfigModule } from '@nestjs/config';
     }),
     ProfileModule,
     GroupModule,
-    CardModule,
-    TryModule,
+    // CardModule,
+    // TryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

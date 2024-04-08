@@ -5,7 +5,12 @@ export class CreateGroupDto {
     @IsString()
     name: string;
 
+    // @IsNotEmpty()
+    // @IsNumber()
+    // profileId: number;
+
     @IsNotEmpty()
     @IsNumber()
-    profileId: number;
+    userId: number;
+    
 }

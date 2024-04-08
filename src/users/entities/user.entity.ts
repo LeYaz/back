@@ -1,6 +1,6 @@
 import { Group } from "src/group/entities/group.entity";
 import { Profile } from "src/profile/entities/profile.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -16,5 +16,9 @@ export class User {
 
     @OneToMany(()=> Profile, profile => profile.user)
     profile: Profile[];
+
+    @ManyToMany(() => Group, group => group.users)
+    @JoinTable()
+    groups: Group[];
 
 }

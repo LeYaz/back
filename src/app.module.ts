@@ -10,6 +10,7 @@ import { GroupModule } from './group/group.module';
 // import { CardModule } from './card/card.module';
 // import { TryModule } from './try/try.module';
 import { ConfigModule } from '@nestjs/config';
+import { ListeModule } from './liste/liste.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     ProfileModule,
     GroupModule,
+    ListeModule,
     // CardModule,
     // TryModule,
   ],

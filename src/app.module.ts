@@ -11,6 +11,8 @@ import { GroupModule } from './group/group.module';
 // import { TryModule } from './try/try.module';
 import { ConfigModule } from '@nestjs/config';
 import { ListeModule } from './liste/liste.module';
+import { DepenseModule } from './depense/depense.module';
+import { ListeChampsModule } from './liste-champs/liste-champs.module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { ListeModule } from './liste/liste.module';
     ProfileModule,
     GroupModule,
     ListeModule,
+    DepenseModule,
+    ListeChampsModule,
     // CardModule,
     // TryModule,
   ],

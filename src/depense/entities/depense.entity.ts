@@ -1,4 +1,6 @@
 import { Entity } from "typeorm";
 
 @Entity()
-export class Depense {}
+export class Depense {
+    
+}

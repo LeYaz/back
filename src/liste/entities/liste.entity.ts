@@ -1,5 +1,6 @@
 import { Group } from "src/group/entities/group.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ListeChamp } from "src/liste-champs/entities/liste-champ.entity";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Liste {
@@ -17,4 +18,7 @@ export class Liste {
 
     @ManyToOne(() => Group, group => group.listes)
     group: Group;
+
+    @OneToMany(() => ListeChamp, listeChamp => listeChamp.liste)
+    listeChamps: ListeChamp[];
 }

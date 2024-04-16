@@ -12,23 +12,23 @@ export class ListeChampsController {
     return this.listeChampsService.create(createListeChampDto);
   }
 
-  @Get()
-  findAll() {
-    return this.listeChampsService.findAll();
+  @Get('/liste/:id/')
+  findByListeId(@Param('id') id: string) {
+    return this.listeChampsService.findByListeId(id);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.listeChampsService.findOne(+id);
+    return this.listeChampsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateListeChampDto: UpdateListeChampDto) {
-    return this.listeChampsService.update(+id, updateListeChampDto);
+    return this.listeChampsService.update(id, updateListeChampDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.listeChampsService.remove(+id);
+    return this.listeChampsService.remove(id);
   }
 }

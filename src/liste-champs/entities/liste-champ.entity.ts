@@ -1,3 +1,4 @@
+import { Depense } from "src/depense/entities/depense.entity";
 import { Liste } from "src/liste/entities/liste.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -20,4 +21,7 @@ export class ListeChamp {
 
     @ManyToOne(() => Liste, liste => liste.listeChamps)
     liste: Liste;
+
+    @ManyToOne(() => Depense, depense => depense.listeChamps)
+    depense: Depense;
 }

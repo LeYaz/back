@@ -12,23 +12,23 @@ export class DepenseController {
     return this.depenseService.create(createDepenseDto);
   }
 
-  @Get()
-  findAll() {
-    return this.depenseService.findAll();
+  @Get('/group/:id/')
+  findByGroupId(@Param('id') id: number){
+    return this.depenseService.findByGroupId(id);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.depenseService.findOne(+id);
+    return this.depenseService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDepenseDto: UpdateDepenseDto) {
-    return this.depenseService.update(+id, updateDepenseDto);
+    return this.depenseService.update(id, updateDepenseDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.depenseService.remove(+id);
+    return this.depenseService.remove(id);
   }
 }

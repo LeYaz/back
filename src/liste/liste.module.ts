@@ -12,5 +12,6 @@ import { GroupModule } from 'src/group/group.module';
   ],
   controllers: [ListeController],
   providers: [ListeService],
+  exports: [ListeService]
 })
 export class ListeModule {}

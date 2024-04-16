@@ -13,6 +13,9 @@ export class CreateDepenseDto {
     @IsNotEmpty()
     forId: number[];
 
+    @IsNotEmpty()
+    groupId: number;
+
     @IsOptional()
     listeChampsId: string[];
 }

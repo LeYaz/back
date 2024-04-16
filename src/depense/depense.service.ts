@@ -36,20 +36,21 @@ export class DepenseService {
     return this.depenseRepository.save(depense);
   }
 
-  findAll() {
-    return `This action returns all depense`;
+  findByGroupId(groupId: number) {
+    return this.depenseRepository.find({where: { group: { id: groupId}}});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} depense`;
+  findOne(id: string) {
+    return this.depenseRepository.findOneBy({id});
   }
 
-  update(id: number, updateDepenseDto: UpdateDepenseDto) {
-    return `This action updates a #${id} depense`;
+  update(id: string, updateDepenseDto: UpdateDepenseDto) {
+   //TODO modifier
+    return this.depenseRepository.update(id, updateDepenseDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} depense`;
+  remove(id: string) {
+    return this.depenseRepository.delete(id);
   }
 
   getUsersList(usersId: number[]): User[] {
@@ -72,7 +73,6 @@ export class DepenseService {
       }
     });
     return listeChamps;
-  
   }
 
 

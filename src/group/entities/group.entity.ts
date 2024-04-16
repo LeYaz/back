@@ -1,5 +1,6 @@
 // import { Card } from "src/card/entities/card.entity";
 // import { Profile } from "src/profile/entities/profile.entity";
+import { Depense } from "src/depense/entities/depense.entity";
 import { Liste } from "src/liste/entities/liste.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -23,4 +24,7 @@ export class Group {
 
     @OneToMany(() => Liste, liste => liste.group)
     listes: Liste[];
+
+    @OneToMany(() => Depense, depense => depense.group)
+    depenses: Depense[];
 }

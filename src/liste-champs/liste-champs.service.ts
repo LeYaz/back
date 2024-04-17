@@ -43,4 +43,10 @@ export class ListeChampsService {
   remove(id: string) {
     return this.listeChampRepository.delete(id);
   }
+
+  async changeStatus(id: string) {
+    let listeChamp = await this.findOne(id);
+    const status = !listeChamp.status;
+    return this.listeChampRepository.update(id, {status: status});
+  }
 }

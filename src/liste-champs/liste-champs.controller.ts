@@ -34,5 +34,10 @@ export class ListeChampsController {
     return this.listeChampsService.remove(id);
   }
 
+  @Get('/change-status/:id')
+  changeStatus(@Param('id') id: string) {
+    return this.listeChampsService.changeStatus(id);
+  }
+
   //TODO acquiter champs ==> status = true
 }

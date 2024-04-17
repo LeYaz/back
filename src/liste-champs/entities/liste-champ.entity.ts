@@ -16,7 +16,7 @@ export class ListeChamp {
     @Column()
     updatedAt: Date;
 
-    @Column()
+    @Column({type:'boolean', default: false})
     status: boolean;
 
     @ManyToOne(() => Liste, liste => liste.listeChamps)

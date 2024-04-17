@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ListeChampsService } from './liste-champs.service';
 import { CreateListeChampDto } from './dto/create-liste-champ.dto';
 import { UpdateListeChampDto } from './dto/update-liste-champ.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('liste-champs')
 export class ListeChampsController {
   constructor(private readonly listeChampsService: ListeChampsService) {}
@@ -31,4 +33,6 @@ export class ListeChampsController {
   remove(@Param('id') id: string) {
     return this.listeChampsService.remove(id);
   }
+
+  //TODO acquiter champs ==> status = true
 }

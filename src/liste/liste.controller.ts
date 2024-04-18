@@ -29,6 +29,7 @@ export class ListeController {
     return this.listeService.update(id, updateListeDto);
   }
 
+  //TODO delete cascade  liste-champs
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.listeService.remove(id);

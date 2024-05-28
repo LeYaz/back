@@ -19,6 +19,8 @@ export class Liste {
     @ManyToOne(() => Group, group => group.listes)
     group: Group;
 
-    @OneToMany(() => ListeChamp, listeChamp => listeChamp.liste)
+    @OneToMany(() => ListeChamp, listeChamp => listeChamp.liste, {
+        onDelete: 'CASCADE',
+    })
     listeChamps: ListeChamp[];
 }

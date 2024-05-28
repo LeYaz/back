@@ -35,7 +35,7 @@ export class ListeService {
   }
 
   update(id: string, updateListeDto: UpdateListeDto) {
-    //TODO MODIFIER updated date
+    //TODO vérifier en recréant la db que le fix est ok
     return this.listeRepository.update(id, updateListeDto);
   }
 

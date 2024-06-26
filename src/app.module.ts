@@ -6,13 +6,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
-import { GroupModule } from './group/group.module';
-// import { CardModule } from './card/card.module';
-// import { TryModule } from './try/try.module';
 import { ConfigModule } from '@nestjs/config';
-import { ListeModule } from './liste/liste.module';
-import { DepenseModule } from './depense/depense.module';
-import { ListeChampsModule } from './liste-champs/liste-champs.module';
 
 @Module({
   imports: [
@@ -33,12 +27,6 @@ import { ListeChampsModule } from './liste-champs/liste-champs.module';
       jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
     }),
     ProfileModule,
-    GroupModule,
-    ListeModule,
-    DepenseModule,
-    ListeChampsModule,
-    // CardModule,
-    // TryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

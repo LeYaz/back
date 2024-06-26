@@ -1,4 +1,3 @@
-import { Group } from "src/group/entities/group.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -20,7 +19,4 @@ export class Profile {
     @ManyToOne(() => User, user => user.profile)
     user : User;
 
-    // @ManyToMany(() => Group, group => group.profile)
-    // @JoinTable()
-    // group: Group[];
 }
